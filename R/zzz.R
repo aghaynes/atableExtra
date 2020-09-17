@@ -1,4 +1,4 @@
 .onLoad <- function(libname, pkgname){
-  require(atable)
+  # require(atable)
   atable_options(format_to = "Console")
 }
