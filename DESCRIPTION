@@ -1,0 +1,20 @@
+Package: atableExtra
+Type: Package
+Title: Additional functions for the 'atable' package
+Version: 0.1.0
+Author@R: 
+    person(given = "Alan G.",
+    family = "Haynes",
+    role = c("cre", "aut"),
+    email = "alan.haynes@ctu.unibe.ch")
+Maintainer: Alan G. Haynes <alan.haynes@ctu.unibe.ch>
+Description: 'atable' provides a flexible means to create baseline tables for clinical research. 'atableExtra' offers flexible alternatives for many of 'atable's methods.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    covr,
+    testthat
+Depends:
+    atable,
+    glue
