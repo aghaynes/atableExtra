@@ -13,16 +13,14 @@
 #'
 #' @examples
 format_statistics.statistics_factor <- function (x,
-              format_statistics.statistics_factor = NULL,
+              factorformat = "{N} ({percent}%)",
               ...) {
 
   nn <- names(x)
-  value <- unlist(x)
-  total <- sum(value)
-  percent <- 100 * value/total
-  value <- paste0(atable_options("format_numbers")(value),
-                  "(", atable_options("format_percent")(percent),
-                  "%)")
+  N <- unlist(x)
+  total <- sum(N)
+  percent <- 100 * N/total
+  value <- glue::glue(factorformat)
   format_statistics_out <- data.frame(tag = factor(nn, levels = nn),
                                       value = value, row.names = NULL,
                                       stringsAsFactors = FALSE,
@@ -72,10 +70,9 @@ format_statistics.statistics_factor <- function (x,
 #' atable(mpg ~ am, mtcars, numstats = c("Mean [SD]" = "{mean} [{sd}]"))
 #'
 format_statistics.numeric_stats <- function(x,
-                                            numstats = c("Mean (SD)" = "{mean} ({sd})",
-                                                         "Min - Max" = "{q0} - {q1}",
-                                                         "Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")[1],
-                                            missingformat = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
+          numstats = c("Mean (SD)" = "{mean} ({sd})",
+                       "Min - Max" = "{q0} - {q1}",
+                       "Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")[1],                                       missingformat = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
                                             ...){
 
   # numeric input to numstats
@@ -89,7 +86,8 @@ format_statistics.numeric_stats <- function(x,
   }
 
   # missing format
-  if(!is.logical(missingformat) & !is.character(missingformat)) stop("Unexpected class of missingformat")
+  if(!is.logical(missingformat) & !is.character(missingformat))
+    stop("Unexpected class of missingformat")
   if(is.logical(missingformat)){
     if(missingformat){
       missingformat <- c("Valid (missing)" = "{Nvalid} ({Nmissing})")
