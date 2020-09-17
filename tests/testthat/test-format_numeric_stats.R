@@ -1,6 +1,7 @@
 context("format_statistics.numeric_stats")
 
 dat <- rnorm(50, 10)
+data(mtcars)
 
 ns <- numeric_stats(dat)
 n <- 10
@@ -83,4 +84,22 @@ test_that("expected outcome (custom)", {
   expect_equal(fns, fns2)
 })
 
+test_that("works with atable", {
 
+  expect_error(atable(mpg ~ am, mtcars,
+                      statistics_numeric = numeric_stats), NA)
+
+  expect_error(atable(mpg ~ am, mtcars,
+                      statistics_numeric = numeric_stats,
+                      numstats = 1:3), NA)
+
+  expect_error(atable(mpg ~ am, mtcars,
+                      statistics_numeric = numeric_stats,
+                      numstats = 1:2, missingformat = FALSE), NA)
+
+  expect_error(atable(mpg ~ am, mtcars,
+                      statistics_numeric = numeric_stats,
+                      numstats = c("Mean" = "{mean}"),
+                      missingformat = FALSE), NA)
+
+})
