@@ -2,7 +2,7 @@ Package: atableExtra
 Type: Package
 Title: Additional functions for the 'atable' package
 Version: 0.1.0
-Author@R: 
+Authors@R: 
     person(given = "Alan G.",
     family = "Haynes",
     role = c("cre", "aut"),
