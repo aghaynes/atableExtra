@@ -18,3 +18,4 @@ Suggests:
 Depends:
     atable,
     glue
+RoxygenNote: 7.1.0
