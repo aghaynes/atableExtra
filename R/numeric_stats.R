@@ -28,8 +28,8 @@ numeric_stats <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
   names(statistics_out) <- paste0("q", quantiles)
 
   # normal stuff
-  statistics_out$mean <- mean(x, na.rm = TRUE)
-  statistics_out$sd <- sd(x, na.rm = TRUE)
+  statistics_out$mean <- base::mean(x, na.rm = TRUE)
+  statistics_out$sd <- stats::sd(x, na.rm = TRUE)
   statistics_out$N <- length(x)
   statistics_out$Nmissing <- sum(is.na(x))
   statistics_out$Nvalid <- sum(!is.na(x))
