@@ -8,7 +8,10 @@
 
 <title>Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`). — numeric_stats • atableExtra</title>
+it's default function (`atable:::statistics.numeric()`). It returns mean,
+SD, any specified quantiles, number of observations, number of valid and missing
+values. Together with the appropriate formatting function, This allows a simple
+and flexible approach to defining the formats. — numeric_stats • atableExtra</title>
 
 
 <!-- jquery -->
@@ -43,10 +46,16 @@ it's default function (`atable:::statistics.numeric()`). — numeric_stats • a
 
 <meta property="og:title" content="Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`). — numeric_stats" />
+it's default function (`atable:::statistics.numeric()`). It returns mean,
+SD, any specified quantiles, number of observations, number of valid and missing
+values. Together with the appropriate formatting function, This allows a simple
+and flexible approach to defining the formats. — numeric_stats" />
 <meta property="og:description" content="Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`)." />
+it's default function (`atable:::statistics.numeric()`). It returns mean,
+SD, any specified quantiles, number of observations, number of valid and missing
+values. Together with the appropriate formatting function, This allows a simple
+and flexible approach to defining the formats." />
 
 
 
@@ -111,7 +120,10 @@ it's default function (`atable:::statistics.numeric()`)." />
     <div class="page-header">
     <h1>Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`).</h1>
+it's default function (`atable:::statistics.numeric()`). It returns mean,
+SD, any specified quantiles, number of observations, number of valid and missing
+values. Together with the appropriate formatting function, This allows a simple
+and flexible approach to defining the formats.</h1>
     
     <div class="hidden name"><code>numeric_stats.Rd</code></div>
     </div>
@@ -119,7 +131,10 @@ it's default function (`atable:::statistics.numeric()`).</h1>
     <div class="ref-description">
     <p>Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`).</p>
+it's default function (`atable:::statistics.numeric()`). It returns mean,
+SD, any specified quantiles, number of observations, number of valid and missing
+values. Together with the appropriate formatting function, This allows a simple
+and flexible approach to defining the formats.</p>
     </div>
 
     <pre class="usage"><span class='fu'>numeric_stats</span>(<span class='kw'>x</span>, quantiles = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>, <span class='fl'>1</span>), <span class='kw'>...</span>)</pre>
@@ -150,6 +165,9 @@ mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s
     
 
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>format_statistics.numeric_stats</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'><a href='https://github.com/arminstroebel/atable'>atable</a></span>)
