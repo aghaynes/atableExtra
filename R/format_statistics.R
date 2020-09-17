@@ -15,7 +15,8 @@
 #' in this case as only strings are passed to `glue`. Values that can be used in
 #' the are braces are `N`, `total` and `percent`.
 #' @export
-#' @importFrom atable format_statistics
+#' @importFrom atable format_statistics atable_options
+#' @importFrom glue glue
 #'
 #' @examples
 #' data(mtcars)
@@ -49,7 +50,7 @@ format_statistics.statistics_factor <- function (x,
 #' format_statistics.numeric_stats can use any statistic returned by `numeric_stats`.
 #'
 #' @param x `numeric_stats` object
-#' @param numstats either a number (1 to 3, referring to the defaults in the order printed) or a named character of the format shown above (i.e. 'Text to print in table' = '{variable1 to use} ({variable2 to use})'). Defaults to `"Mean (SD)" = "{mean} ({sd})"`, equivilent to 1.
+#' @param numstats either a number (1 to 3, referring to the defaults in the order printed) or a named character of the format shown above (i.e. 'Text to print in table' = '{variable1 to use} ({variable2 to use})'), where the name is used as the row name and the second part in the formatting. Defaults to `"Mean (SD)" = "{mean} ({sd})"`, equivilent to 1. `numstats` = 2 is equivalent to \code("Min - Max" = "{q0} - {q1}") and 3 is equivalent to \code("Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")
 #' @param missingformat either a logical or a named string defining the format
 #' @param ... passed to/from other methods
 #' @details
@@ -78,9 +79,7 @@ format_statistics.statistics_factor <- function (x,
 #' atable(mpg ~ am, mtcars, numstats = c("Mean [SD]" = "{mean} [{sd}]"))
 #'
 format_statistics.numeric_stats <- function(x,
-          numstats = c("Mean (SD)" = "{mean} ({sd})",
-                       "Min - Max" = "{q0} - {q1}",
-                       "Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")[1],
+          numstats = c("Mean (SD)" = "{mean} ({sd})"),
           missingformat = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
           ...){
 
