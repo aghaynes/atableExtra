@@ -1,6 +1,9 @@
 #' Calculate summary statistics for numeric variables
 #' This function is designed to be compatible with `atable` as a substitute for
-#' it's default function (`atable:::statistics.numeric()`).
+#' it's default function (`atable:::statistics.numeric()`). It returns mean,
+#' SD, any specified quantiles, number of observations, number of valid and missing
+#' values. Together with the appropriate formatting function, This allows a simple
+#' and flexible approach to defining the formats.
 #'
 #' @param x data
 #' @param quantiles list of quantiles to calculate
@@ -10,6 +13,8 @@
 #' @return list of class `numeric_stats` with one element for each quantile (e.g. `q0.5` for median),
 #' mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s)
 #' @export
+#'
+#' @seealso format_statistics.numeric_stats
 #'
 #' @examples
 #' require(atable)
