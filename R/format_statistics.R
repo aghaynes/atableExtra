@@ -1,8 +1,10 @@
-#' Format factors as `X (X%)` instead of `X% (X)`
+#' Format factors as `X (X\%)` instead of `X\% (X)`
 #'
-#'Almost an exact copy of the equivilent function from `atable`,
-#'this function just formats factors as e.g. 15 (25%) rather than
-#'25% (15) as `atable` does.
+#' Almost an exact copy of the equivilent function from `atable`,
+#' this function just formats factors as e.g. 15 (25%) rather than
+#' 25% (15) as `atable` does. It is a personal-preference thing...
+#'
+#' When `atableExtra` loads, this function automatically overrides the `atable` version
 #'
 #' @param x a `statistics_factor` object as created by `atable:::statistics.factor`
 #' @param factorformat how to format the values
@@ -18,8 +20,7 @@
 #' @examples
 #' data(mtcars)
 #' mtcars$cyl <- as.factor(mtcars$cyl)
-#' atable(mtcars, target_cols = "cyl",
-#' format_statistics.statistics_factor = atableExtra::format_statistics.statistics_factor)
+#' atable(mtcars, target_cols = "cyl")
 format_statistics.statistics_factor <- function (x,
               factorformat = "{N} ({percent}%)",
               ...) {
@@ -79,8 +80,9 @@ format_statistics.statistics_factor <- function (x,
 format_statistics.numeric_stats <- function(x,
           numstats = c("Mean (SD)" = "{mean} ({sd})",
                        "Min - Max" = "{q0} - {q1}",
-                       "Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")[1],                                       missingformat = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
-                                            ...){
+                       "Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")[1],
+          missingformat = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
+          ...){
 
   # numeric input to numstats
   if(is.numeric(numstats)){

@@ -2,7 +2,7 @@
 % Please edit documentation in R/format_statistics.R
 \name{format_statistics.statistics_factor}
 \alias{format_statistics.statistics_factor}
-\title{Format factors as `X (X%)` instead of `X% (X)`}
+\title{Format factors as `X (X\%)` instead of `X\% (X)`}
 \usage{
 \method{format_statistics}{statistics_factor}(x, factorformat = "{N} ({percent}\%)", ...)
 }
@@ -16,9 +16,12 @@
 \description{
 Almost an exact copy of the equivilent function from `atable`,
 this function just formats factors as e.g. 15 (25%) rather than
-25% (15) as `atable` does.
+25% (15) as `atable` does. It is a personal-preference thing...
 }
 \details{
+When `atableExtra` loads, this function automatically overrides the `atable` version
+
+
 Option `factorformat` uses the `glue` package to create strings.
 Although `glue` parses the values within the braces (`{` and `}`), this is not permitted
 in this case as only strings are passed to `glue`. Values that can be used in
@@ -27,6 +30,5 @@ the are braces are `N`, `total` and `percent`.
 \examples{
 data(mtcars)
 mtcars$cyl <- as.factor(mtcars$cyl)
-atable(mtcars, target_cols = "cyl",
-format_statistics.statistics_factor = atableExtra::format_statistics.statistics_factor)
+atable(mtcars, target_cols = "cyl")
 }

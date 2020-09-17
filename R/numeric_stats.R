@@ -24,7 +24,7 @@ numeric_stats <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
   if(!is.numeric(x)) stop("x should be numeric")
 
   # quantiles
-  statistics_out <- as.list(quantile(x, quantiles, na.rm = TRUE))
+  statistics_out <- as.list(stats::quantile(x, quantiles, na.rm = TRUE))
   names(statistics_out) <- paste0("q", quantiles)
 
   # normal stuff
