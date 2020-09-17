@@ -76,7 +76,7 @@ test_that("expected outcome (custom)", {
   expect_equal(ncol(fns), 2)
 
   fns <- format_statistics(ns, c("Mean" = "{mean}", "Missing" = "{Nmissing}"), FALSE)
-  expect_equal(nrow(fns), 1)
+  expect_equal(nrow(fns), 2)
   expect_equal(ncol(fns), 2)
 
   fns2 <- format_statistics(ns, c("Mean" = "{mean}"), c("Missing" = "{Nmissing}"))
