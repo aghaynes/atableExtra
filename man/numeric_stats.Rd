@@ -12,6 +12,8 @@ numeric_stats(x, quantiles = c(0, 0.25, 0.5, 0.75, 1), ...)
 \item{x}{data}
 
 \item{quantiles}{list of quantiles to calculate}
+
+\item{...}{passed to/from other methods}
 }
 \value{
 list of class `numeric_stats` with one element for each quantile (e.g. `q0.5` for median),

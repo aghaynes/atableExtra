@@ -7,13 +7,26 @@
 \method{format_statistics}{statistics_factor}(x, factorformat = "{N} ({percent}\%)", ...)
 }
 \arguments{
-\item{...}{}
-}
-\value{
+\item{x}{a `statistics_factor` object as created by `atable:::statistics.factor`}
 
+\item{factorformat}{how to format the values}
+
+\item{...}{passed to/from other methods}
 }
 \description{
 Almost an exact copy of the equivilent function from `atable`,
 this function just formats factors as e.g. 15 (25%) rather than
 25% (15) as `atable` does.
+}
+\details{
+Option `factorformat` uses the `glue` package to create strings.
+Although `glue` parses the values within the braces (`{` and `}`), this is not permitted
+in this case as only strings are passed to `glue`. Values that can be used in
+the are braces are `N`, `total` and `percent`.
+}
+\examples{
+data(mtcars)
+mtcars$cyl <- as.factor(mtcars$cyl)
+atable(mtcars, target_cols = "cyl",
+format_statistics.statistics_factor = atableExtra::format_statistics.statistics_factor)
 }
