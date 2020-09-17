@@ -4,7 +4,7 @@
 #'
 #' @param x data
 #' @param quantiles list of quantiles to calculate
-#' @param ...
+#' @param ... passed to/from other methods
 #' @details
 #'
 #' @return list of class `numeric_stats` with one element for each quantile (e.g. `q0.5` for median),

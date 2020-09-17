@@ -4,14 +4,22 @@
 #'this function just formats factors as e.g. 15 (25%) rather than
 #'25% (15) as `atable` does.
 #'
-#' @param x
-#' @param format_statistics.statistics_factor
-#' @param ...
-#'
-#' @return
+#' @param x a `statistics_factor` object as created by `atable:::statistics.factor`
+#' @param factorformat how to format the values
+#' @param ... passed to/from other methods
+#' @details
+#' Option `factorformat` uses the `glue` package to create strings.
+#' Although `glue` parses the values within the braces (`{` and `}`), this is not permitted
+#' in this case as only strings are passed to `glue`. Values that can be used in
+#' the are braces are `N`, `total` and `percent`.
 #' @export
+#' @importFrom atable format_statistics
 #'
 #' @examples
+#' data(mtcars)
+#' mtcars$cyl <- as.factor(mtcars$cyl)
+#' atable(mtcars, target_cols = "cyl",
+#' format_statistics.statistics_factor = atableExtra::format_statistics.statistics_factor)
 format_statistics.statistics_factor <- function (x,
               factorformat = "{N} ({percent}%)",
               ...) {
@@ -19,7 +27,7 @@ format_statistics.statistics_factor <- function (x,
   nn <- names(x)
   N <- unlist(x)
   total <- sum(N)
-  percent <- 100 * N/total
+  percent <- atable_options("format_numbers")(100 * N/total)
   value <- glue::glue(factorformat)
   format_statistics_out <- data.frame(tag = factor(nn, levels = nn),
                                       value = value, row.names = NULL,
@@ -42,16 +50,15 @@ format_statistics.statistics_factor <- function (x,
 #' @param x `numeric_stats` object
 #' @param numstats either a number (1 to 3, referring to the defaults in the order printed) or a named character of the format shown above (i.e. 'Text to print in table' = '{variable1 to use} ({variable2 to use})'). Defaults to `"Mean (SD)" = "{mean} ({sd})"`, equivilent to 1.
 #' @param missingformat either a logical or a named string defining the format
-#' @param ...
+#' @param ... passed to/from other methods
 #' @details
 #' All numbers are formatted by the function in `atable_options("format_numbers")`.
 #' To use a different method, reassign that function.
 #'
 #' Options `numstats` and `missingformat` use the `glue` package to create strings.
-#' Although `glue` parses the values within the braces (`{`), this is not permitted
+#' Although `glue` parses the values within the braces (`{` and `}`), this is not permitted
 #' in this case as only strings are passed to `glue`.
 #'
-#' @return
 #' @export
 #'
 #' @examples
