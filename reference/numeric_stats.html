@@ -174,20 +174,20 @@ mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>mtcars</span>)
 <span class='co'># single use (specify in atable call)</span>
 <span class='fu'><a href='https://rdrr.io/pkg/atable/man/atable.html'>atable</a></span>(<span class='kw'>mpg</span> <span class='op'>~</span> <span class='kw'>am</span>, <span class='kw'>mtcars</span>, statistics.numeric = <span class='kw'>numeric_stats</span>)
-</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot compute exact p-value with ties</span></div><div class='output co'>#&gt;   Group                0        1        p      stat Effect Size (CI)  
-#&gt; 1 Observations                                                         
-#&gt; 2                      19       13                                     
-#&gt; 3 mpg                                                                  
-#&gt; 4      Mean (SD)       17 (3.8) 24 (6.2) 0.0039 0.64 -1.5 (-2.3; -0.65)
-#&gt; 5      Valid (missing) 19 (0)   13 (0)                                 </div><div class='input'><span class='co'># or change atables default</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot compute exact p-value with ties</span></div><div class='output co'>#&gt;                    Group        0        1      p stat   Effect Size (CI)
+#&gt; 1          Observations                                                  
+#&gt; 2          \\quad \\quad       19       13                               
+#&gt; 3             mpg \\quad                                                 
+#&gt; 4       \\quad Mean (SD) 17 (3.8) 24 (6.2) 0.0039 0.64 -1.5 (-2.3; -0.65)
+#&gt; 5 \\quad Valid (missing)   19 (0)   13 (0)                               </div><div class='input'><span class='co'># or change atables default</span>
 <span class='fu'><a href='https://rdrr.io/pkg/atable/man/atable_options.html'>atable_options</a></span>(statistics.numeric = <span class='kw'>numeric_stats</span>)
 <span class='fu'><a href='https://rdrr.io/pkg/atable/man/atable.html'>atable</a></span>(<span class='kw'>mpg</span> <span class='op'>~</span> <span class='kw'>am</span>, <span class='kw'>mtcars</span>)
-</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot compute exact p-value with ties</span></div><div class='output co'>#&gt;   Group                0        1        p      stat Effect Size (CI)  
-#&gt; 1 Observations                                                         
-#&gt; 2                      19       13                                     
-#&gt; 3 mpg                                                                  
-#&gt; 4      Mean (SD)       17 (3.8) 24 (6.2) 0.0039 0.64 -1.5 (-2.3; -0.65)
-#&gt; 5      Valid (missing) 19 (0)   13 (0)                                 </div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot compute exact p-value with ties</span></div><div class='output co'>#&gt;                    Group        0        1      p stat   Effect Size (CI)
+#&gt; 1          Observations                                                  
+#&gt; 2          \\quad \\quad       19       13                               
+#&gt; 3             mpg \\quad                                                 
+#&gt; 4       \\quad Mean (SD) 17 (3.8) 24 (6.2) 0.0039 0.64 -1.5 (-2.3; -0.65)
+#&gt; 5 \\quad Valid (missing)   19 (0)   13 (0)                               </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
