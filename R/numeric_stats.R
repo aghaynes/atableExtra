@@ -50,20 +50,3 @@ numeric_stats <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
 
 }
 
-# x <- numeric_stats(rnorm(20, 50, 10))
-#
-#
-#
-#
-#
-# format_statistics(x, numstats = c("Mean (SD)" = "{mean} ({sd})",
-#                                   "Min - Max" = "{q0} - {q1}"),
-#                   missingformat = FALSE)
-# format_statistics(x, c("Median" = "{q0.5*10}"),
-#                   missingformat = FALSE)
-#
-#
-# atable(mpg ~ am, mtcars, statistics.numeric = numeric_stats,
-#        numstats = 1)
-
-
