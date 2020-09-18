@@ -4,7 +4,10 @@
 \alias{numeric_stats}
 \title{Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`).}
+it's default function (`atable:::statistics.numeric()`). It returns mean,
+SD, any specified quantiles, number of observations, number of valid and missing
+values. Together with the appropriate formatting function, This allows a simple
+and flexible approach to defining the formats.}
 \usage{
 numeric_stats(x, quantiles = c(0, 0.25, 0.5, 0.75, 1), ...)
 }
@@ -22,7 +25,10 @@ mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s
 \description{
 Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`).
+it's default function (`atable:::statistics.numeric()`). It returns mean,
+SD, any specified quantiles, number of observations, number of valid and missing
+values. Together with the appropriate formatting function, This allows a simple
+and flexible approach to defining the formats.
 }
 \details{
 
@@ -36,4 +42,7 @@ atable(mpg ~ am, mtcars, statistics.numeric = numeric_stats)
 atable_options(statistics.numeric = numeric_stats)
 atable(mpg ~ am, mtcars)
 
+}
+\seealso{
+format_statistics.numeric_stats
 }

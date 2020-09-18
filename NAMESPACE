@@ -3,4 +3,6 @@
 S3method(format_statistics,numeric_stats)
 S3method(format_statistics,statistics_factor)
 export(numeric_stats)
+importFrom(atable,atable_options)
 importFrom(atable,format_statistics)
+importFrom(glue,glue)
