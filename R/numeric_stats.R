@@ -10,7 +10,9 @@
 #' @param ... passed to/from other methods
 #' @details
 #'
-#' @return list of class `numeric_stats` with one element for each quantile (e.g. `q0.5` for median),
+#' @return list of class `numeric_stats` with one element for each quantile
+#' (e.g. `q0.5` for median), iqr (interquartile range, only if quantiles includes
+#' 0.25 and 0.75), range (only if quartiles includes 0 and 1),
 #' mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s)
 #' @export
 #'
@@ -31,6 +33,10 @@ numeric_stats <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
   # quantiles
   statistics_out <- as.list(stats::quantile(x, quantiles, na.rm = TRUE))
   names(statistics_out) <- paste0("q", quantiles)
+  if(all(c(.25, .75) %in% quantiles))
+    statistics_out$iqr <- statistics_out$q0.75 - statistics_out$q0.25
+  if(all(c(0,1) %in% quantiles))
+    statistics_out$range <- statistics_out$q0 - statistics_out$q1
 
   # normal stuff
   statistics_out$mean <- base::mean(x, na.rm = TRUE)
