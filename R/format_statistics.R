@@ -92,7 +92,7 @@ format_statistics.statistics_factor <- function (x,
 #' atable(mpg ~ am, mtcars, numstats = c(1,3))
 #' # change to square brackets
 #' atable(mpg ~ am, mtcars, numstats = c("Mean [SD]" = "{mean} [{sd}]"))
-#'
+
 format_statistics.numeric_stats <- function(x,
           numstats = c("Mean (SD)" = "{mean} ({sd})"),
           missingformat = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
@@ -152,7 +152,18 @@ format_statistics.numeric_stats <- function(x,
 
 
 
+#' @export
+#' @describeIn format_statistics.numeric_stats
+format_statistics.numeric_stats_np <- function(x,
+            numstats_np = 3,
+            missingformat_np = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
+            ...){
 
+  out <- format_statistics.numeric_stats(x,
+            numstats = numstats_np,
+            missingformat = missingformat_np, ...)
 
+  return(out)
+}
 
 

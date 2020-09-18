@@ -1,4 +1,5 @@
 #' Calculate summary statistics for numeric variables
+#'
 #' This function is designed to be compatible with `atable` as a substitute for
 #' it's default function (`atable:::statistics.numeric()`). It returns mean,
 #' SD, any specified quantiles, number of observations, number of valid and missing
@@ -26,9 +27,19 @@
 #' # or change atables default
 #' atable_options(statistics.numeric = numeric_stats)
 #' atable(mpg ~ am, mtcars)
-#'
-numeric_stats <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
+#
+numeric_stats <- function(x, ...){
+  UseMethod("numeric_stats")
+}
+
+
+
+
+#' @export
+#' @describeIn numeric_stats
+numeric_stats.numeric <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
   if(!is.numeric(x)) stop("x should be numeric")
+  if(!is.numeric(quantiles)) stop("quantiles should be numeric")
 
   # quantiles
   statistics_out <- as.list(stats::quantile(x, quantiles, na.rm = TRUE))
@@ -50,3 +61,10 @@ numeric_stats <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
 
 }
 
+#' @export
+#' @describeIn numeric_stats
+numeric_stats.numeric_np <- function(x, ...){
+  out <- numeric_stats(as.numeric(x), ...)
+  class(out) <- c("numeric_stats_np", class(out))
+  out
+}
