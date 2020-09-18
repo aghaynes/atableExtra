@@ -11,8 +11,8 @@ ns2 <- numeric_stats(c(dat, NA), seq(0, 1, length.out = n))
 
 
 test_that("number of elements", {
-  expect_equal(length(ns), 10)
-  expect_equal(length(ns2), n+5)
+  expect_equal(length(ns), 12)
+  expect_equal(length(ns2), n+6)
 })
 
 test_that("results as expected", {

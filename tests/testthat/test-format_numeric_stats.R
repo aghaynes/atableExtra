@@ -86,20 +86,25 @@ test_that("expected outcome (custom)", {
 
 test_that("works with atable", {
 
-  expect_error(atable(mpg ~ am, mtcars,
-                      statistics_numeric = numeric_stats), NA)
+  expect_warning(atable(mpg ~ am, mtcars,
+                      statistics_numeric = numeric_stats),
+                 "cannot compute exact p-value")
 
-  expect_error(atable(mpg ~ am, mtcars,
+  expect_warning(atable(mpg ~ am, mtcars,
                       statistics_numeric = numeric_stats,
-                      numstats = 1:3), NA)
+                      numstats = 1:3),
+                 "cannot compute exact p-value")
 
-  expect_error(atable(mpg ~ am, mtcars,
+  expect_warning(atable(mpg ~ am, mtcars,
                       statistics_numeric = numeric_stats,
-                      numstats = 1:2, missingformat = FALSE), NA)
+                      numstats = 1:2, missingformat = FALSE),
+                 "cannot compute exact p-value")
 
-  expect_error(atable(mpg ~ am, mtcars,
+  expect_warning(atable(mpg ~ am, mtcars,
                       statistics_numeric = numeric_stats,
                       numstats = c("Mean" = "{mean}"),
-                      missingformat = FALSE), NA)
+                      missingformat = FALSE),
+                 "cannot compute exact p-value")
 
 })
+
