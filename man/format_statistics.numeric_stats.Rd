@@ -58,5 +58,4 @@ atable(mpg ~ am, mtcars, numstats = 1:2)
 atable(mpg ~ am, mtcars, numstats = c(1,3))
 # change to square brackets
 atable(mpg ~ am, mtcars, numstats = c("Mean [SD]" = "{mean} [{sd}]"))
-
 }
