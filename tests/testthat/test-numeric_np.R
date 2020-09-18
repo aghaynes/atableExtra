@@ -27,6 +27,7 @@ test_that("formatting", {
 
 data(mtcars)
 mtcars$cyl <- as.numeric_np(mtcars$cyl)
+ns <- numeric_stats(mtcars$cyl)
 
 test_that("works with atable", {
   at <- atable(mtcars, target_cols = c("cyl", "mpg"),
@@ -34,5 +35,10 @@ test_that("works with atable", {
                format_to = "Console")
   expect_true(any(grepl("Median", at[grep("cyl", at$Group):grep("mpg", at$Group),1])))
   expect_true(any(grepl("Mean", at[grep("mpg", at$Group):nrow(at),1])))
+
+  at <- atable(mtcars, target_cols = c("cyl", "mpg"),
+               statistics.numeric = numeric_stats,
+               format_to = "Console", np_missingformat = FALSE)
+  expect_equal(sum(grepl("Valid", at$Group)), 1)
 })
 

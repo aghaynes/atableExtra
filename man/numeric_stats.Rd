@@ -2,21 +2,16 @@
 % Please edit documentation in R/numeric_stats.R
 \name{numeric_stats}
 \alias{numeric_stats}
-\title{Calculate summary statistics for numeric variables
-This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`). It returns mean,
-SD, any specified quantiles, number of observations, number of valid and missing
-values. Together with the appropriate formatting function, This allows a simple
-and flexible approach to defining the formats.}
+\title{Calculate summary statistics for numeric variables}
 \usage{
-numeric_stats(x, quantiles = c(0, 0.25, 0.5, 0.75, 1), ...)
+numeric_stats(x, ...)
 }
 \arguments{
 \item{x}{data}
 
-\item{quantiles}{list of quantiles to calculate}
-
 \item{...}{passed to/from other methods}
+
+\item{quantiles}{list of quantiles to calculate}
 }
 \value{
 list of class `numeric_stats` with one element for each quantile
@@ -25,7 +20,6 @@ list of class `numeric_stats` with one element for each quantile
 mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s)
 }
 \description{
-Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
 it's default function (`atable:::statistics.numeric()`). It returns mean,
 SD, any specified quantiles, number of observations, number of valid and missing
@@ -43,7 +37,6 @@ atable(mpg ~ am, mtcars, statistics.numeric = numeric_stats)
 # or change atables default
 atable_options(statistics.numeric = numeric_stats)
 atable(mpg ~ am, mtcars)
-
 }
 \seealso{
 format_statistics.numeric_stats
