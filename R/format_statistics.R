@@ -45,15 +45,17 @@ format_statistics.statistics_factor <- function (x,
 
 
 
-#' Format summary statistics for numeric variables when using `numeric_stats`
+#' Format summary statistics for numeric variables when using \code{numstats}
 #'
-#' format_statistics.numeric_stats can use any statistic returned by `numeric_stats`.
+#' format_statistics.numeric_stats can use any statistic returned by \code{numstats}.
+#' It returns the type of table expected by \code{atable}.
 #'
-#' @param x `numeric_stats` object
+#' @param x a \code{numstats} object
 #' @param numstats either a number (1 to 3) or a named character, where the name
 #' is used as the row name and the second part in the formatting. See details for
 #' more info.
-#' @param missingformat either a logical or a named string defining the format as for `numstats`.
+#' @param missingformat either a logical or a named string defining the format
+#' as for \code{numstats}.
 #' @param ... passed to/from other methods
 #' @details
 #'
@@ -69,6 +71,9 @@ format_statistics.statistics_factor <- function (x,
 #' is equivalent to \code{c("Min - Max" = "{q0} - {q1}")} and number 3 is
 #' equivalent to \code{c("Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")}.
 #' Any parameter returned by \code{numeric_stats} can be used.
+#'
+#' \code{missingformat} works in the same way as \code{numstats}. Tt defaults to
+#' \code{c("Valid (missing)" = "{Nvalid} ({Nmissing})")}.
 #'
 #'
 #' @export
