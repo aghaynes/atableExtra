@@ -155,13 +155,13 @@ format_statistics.numeric_stats <- function(x,
 #' @export
 #' @describeIn format_statistics.numeric_stats
 format_statistics.numeric_stats_np <- function(x,
-            numstats_np = 3,
-            missingformat_np = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
+            np_numstats = 3,
+            np_missingformat = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
             ...){
 
   out <- format_statistics.numeric_stats(x,
-            numstats = numstats_np,
-            missingformat = missingformat_np, ...)
+            numstats = np_numstats,
+            missingformat = np_missingformat, ...)
 
   return(out)
 }

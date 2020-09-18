@@ -17,7 +17,8 @@
 as.numeric_np <- function(x){
   if(!"numeric" %in% class(x))
     stop("Not a numeric")
-  class(x) <- c("numeric_np", class(x))
+  if(!"numeric_np" %in% class(x))
+    class(x) <- c("numeric_np", class(x))
   x
 }
 
