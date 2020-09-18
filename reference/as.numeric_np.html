@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate summary statistics for numeric variables — numeric_stats • atableExtra</title>
+<title>Apply numeric_np class to a numeric variable — as.numeric_np • atableExtra</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,11 @@
 
 
 
-<meta property="og:title" content="Calculate summary statistics for numeric variables — numeric_stats" />
-<meta property="og:description" content="This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`). It returns mean,
-SD, any specified quantiles, number of observations, number of valid and missing
-values. Together with the appropriate formatting function, This allows a simple
-and flexible approach to defining the formats." />
+<meta property="og:title" content="Apply numeric_np class to a numeric variable — as.numeric_np" />
+<meta property="og:description" content="To allow atable to return different statistics for different variables
+of the same type (e.g. we want some variables to be formatted as
+Mean (SD) and others as Median [IQR]), they need to be passed
+to atable as different classes." />
 
 
 
@@ -107,72 +106,40 @@ and flexible approach to defining the formats." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate summary statistics for numeric variables</h1>
+    <h1>Apply numeric_np class to a numeric variable</h1>
     
-    <div class="hidden name"><code>numeric_stats.Rd</code></div>
+    <div class="hidden name"><code>as.numeric_np.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function is designed to be compatible with `atable` as a substitute for
-it's default function (`atable:::statistics.numeric()`). It returns mean,
-SD, any specified quantiles, number of observations, number of valid and missing
-values. Together with the appropriate formatting function, This allows a simple
-and flexible approach to defining the formats.</p>
+    <p>To allow <code>atable</code> to return different statistics for different variables
+of the same type (e.g. we want some variables to be formatted as
+<code>Mean (SD)</code> and others as <code>Median [IQR]</code>), they need to be passed
+to <code>atable</code> as different classes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>numeric_stats</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>as.numeric_np</span>(<span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>data</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>passed to/from other methods</p></td>
-    </tr>
-    <tr>
-      <th>quantiles</th>
-      <td><p>list of quantiles to calculate</p></td>
+      <td></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list of class `numeric_stats` with one element for each quantile
-(e.g. `q0.5` for median), iqr (interquartile range, only if quantiles includes
-0.25 and 0.75), range (only if quartiles includes 0 and 1),
-mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s)</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
     
 
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>format_statistics.numeric_stats</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'><a href='https://github.com/arminstroebel/atable'>atable</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>mtcars</span>)
-<span class='co'># single use (specify in atable call)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/atable/man/atable.html'>atable</a></span>(<span class='kw'>mpg</span> <span class='op'>~</span> <span class='kw'>am</span>, <span class='kw'>mtcars</span>, statistics.numeric = <span class='kw'>numeric_stats</span>)
-</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot compute exact p-value with ties</span></div><div class='output co'>#&gt;                    Group        0        1      p stat   Effect Size (CI)
-#&gt; 1          Observations                                                  
-#&gt; 2          \\quad \\quad       19       13                               
-#&gt; 3             mpg \\quad                                                 
-#&gt; 4       \\quad Mean (SD) 17 (3.8) 24 (6.2) 0.0039 0.64 -1.5 (-2.3; -0.65)
-#&gt; 5 \\quad Valid (missing)   19 (0)   13 (0)                               </div><div class='input'><span class='co'># or change atables default</span>
-<span class='fu'><a href='https://rdrr.io/pkg/atable/man/atable_options.html'>atable_options</a></span>(statistics.numeric = <span class='kw'>numeric_stats</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/atable/man/atable.html'>atable</a></span>(<span class='kw'>mpg</span> <span class='op'>~</span> <span class='kw'>am</span>, <span class='kw'>mtcars</span>)
-</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot compute exact p-value with ties</span></div><div class='output co'>#&gt;                    Group        0        1      p stat   Effect Size (CI)
-#&gt; 1          Observations                                                  
-#&gt; 2          \\quad \\quad       19       13                               
-#&gt; 3             mpg \\quad                                                 
-#&gt; 4       \\quad Mean (SD) 17 (3.8) 24 (6.2) 0.0039 0.64 -1.5 (-2.3; -0.65)
-#&gt; 5 \\quad Valid (missing)   19 (0)   13 (0)                               </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>mtcars</span>)
+<span class='kw'>mtcars</span><span class='op'>$</span><span class='kw'>wt_np</span> <span class='op'>&lt;-</span> <span class='fu'>as.numeric_np</span>(<span class='kw'>mtcars</span><span class='op'>$</span><span class='kw'>wt</span>)
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
