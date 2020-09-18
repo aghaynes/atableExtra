@@ -19,7 +19,9 @@ numeric_stats(x, quantiles = c(0, 0.25, 0.5, 0.75, 1), ...)
 \item{...}{passed to/from other methods}
 }
 \value{
-list of class `numeric_stats` with one element for each quantile (e.g. `q0.5` for median),
+list of class `numeric_stats` with one element for each quantile
+(e.g. `q0.5` for median), iqr (interquartile range, only if quantiles includes
+0.25 and 0.75), range (only if quartiles includes 0 and 1),
 mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s)
 }
 \description{
