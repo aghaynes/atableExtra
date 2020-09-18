@@ -51,7 +51,7 @@ format_statistics.statistics_factor <- function (x,
 #'
 #' @param x `numeric_stats` object
 #' @param numstats either a number (1 to 3, referring to the defaults in the order printed) or a named character of the format shown above (i.e. 'Text to print in table' = '{variable1 to use} ({variable2 to use})'), where the name is used as the row name and the second part in the formatting. Defaults to `"Mean (SD)" = "{mean} ({sd})"`, equivilent to 1. `numstats` = 2 is equivalent to \code("Min - Max" = "{q0} - {q1}") and 3 is equivalent to \code("Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")
-#' @param missingformat either a logical or a named string defining the format
+#' @param missingformat either a logical or a named string defining the format as for `numstats`.
 #' @param ... passed to/from other methods
 #' @details
 #' All numbers are formatted by the function in `atable_options("format_numbers")`.
@@ -134,4 +134,10 @@ format_statistics.numeric_stats <- function(x,
   # the factor needs levels for the non-alphabetic order
   return(out)
 }
+
+
+
+
+
+
 
