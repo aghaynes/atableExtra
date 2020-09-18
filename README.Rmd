@@ -14,7 +14,13 @@ knitr::opts_chunk$set(
 ```
 # atableExtra
 
-`atable` is a package simplifying the task of creating tables of summary statistics similar to those found as the first table of a clinical trial publication. Although it is very flexible, utilising this flexibility involves writing new functions to calculate other measures and statistics. `atableExtra` provides some additional functions to simplify this task. `atableExtra` also changes some `atable` default settings.
+[`atable`](https://CRAN.R-project.org/package=atable) is a package simplifying 
+the task of creating tables of summary statistics 
+similar to those found as the first table of a clinical trial publication. Although 
+it is very flexible, utilising this flexibility involves writing new functions to 
+calculate other measures and statistics. `atableExtra` provides some additional 
+functions to simplify this task. `atableExtra` also changes some `atable` default 
+settings.
 
 ## Installation
 
@@ -32,17 +38,64 @@ knitr::opts_chunk$set(
 devtools::install_github("aghaynes/atableExtra")
 ```
 
-## Example
+## Factors
 
-This is a basic example which shows you how to solve a common problem:
+`atableExtra` changes the default formatting of factors from `percentage (N)` to `N (percentage)`. 
 
-```{r , eval=FALSE}
+```{r , eval=TRUE}
+library(atable)
+atable_options(format_to = "Console")
+data(mtcars)
+mtcars$cyl <- as.factor(mtcars$cyl)
+atable(mtcars, target_cols = "cyl")
+
 library(atableExtra)
-## basic example code
+atable(mtcars, target_cols = "cyl")
+
 ```
 
 
+## Numeric
 
+`atableExtra` also provides a flexible approach to formatting numeric variables 
+via the `numeric_stats` function and it's appropriate `format_statistics` method.
+It's default settings mimic those from `atable`:
 
+```{r}
+# atable
+atable(mtcars, target_cols = "mpg")
+# atableExtra
+atable_options(statistics.numeric = numeric_stats) # replace the default function
+atable(mtcars, target_cols = "mpg")
+```
+
+It's easy to change the format though via the `numstats` argument that takes 
+either numbers 1 to 3 (defaults to 1)...
+```{r}
+atable(mtcars, target_cols = "mpg", numstats = 1:3)
+```
+
+... or named characters...
+```{r}
+atable(mtcars, target_cols = "mpg", 
+       numstats = c("Mean" = "{mean}", "Median" = "{q0.5}"))
+```
+
+Any quantile can be used (0th (= minimum), 25th, median, 75th and 100th (=maximum) are available by default) via the `quantiles` argument and referred to as e.g. `q0.1` for the 10th percentile.
+```{r}
+atable(mtcars, target_cols = "mpg", 
+       quantiles = .1, 
+       numstats = c("10th percentile" = "{q0.1}"))
+```
+
+The number of valid/missing observations can be turned off via the `missingformat` argument...
+
+```{r}
+atable(mtcars, target_cols = "mpg", missingformat = FALSE)
+```
+... or modified as per the `numstats` argument...
+```{r}
+atable(mtcars, target_cols = "mpg", missingformat = c("Missing" = "{Nmissing}"))
+```
 
 
