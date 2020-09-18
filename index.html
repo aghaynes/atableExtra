@@ -62,7 +62,7 @@
 <div id="atableextra" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#atableextra" class="anchor"></a>atableExtra</h1></div>
-<p><code>atable</code> is a package simplifying the task of creating tables of summary statistics similar to those found as the first table of a clinical trial publication. Although it is very flexible, utilising this flexibility involves writing new functions to calculate other measures and statistics. <code>atableExtra</code> provides some additional functions to simplify this task. <code>atableExtra</code> also changes some <code>atable</code> default settings.</p>
+<p><a href="https://CRAN.R-project.org/package=atable"><code>atable</code></a> is a package simplifying the task of creating tables of summary statistics similar to those found as the first table of a clinical trial publication. Although it is very flexible, utilising this flexibility involves writing new functions to calculate other measures and statistics. <code>atableExtra</code> provides some additional functions to simplify this task. <code>atableExtra</code> also changes some <code>atable</code> default settings.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -75,12 +75,105 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"aghaynes/atableExtra"</span>)</span></code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="factors" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(atableExtra)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">## basic example code</span></span></code></pre></div>
+<a href="#factors" class="anchor"></a>Factors</h2>
+<p><code>atableExtra</code> changes the default formatting of factors from <code>percentage (N)</code> to <code>N (percentage)</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(atable)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">atable_options</span>(<span class="dt">format_to =</span> <span class="st">"Console"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">data</span>(mtcars)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>mtcars<span class="op">$</span>cyl &lt;-<span class="st"> </span><span class="kw">as.factor</span>(mtcars<span class="op">$</span>cyl)</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"cyl"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;   Group         value   </span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; 1 Observations          </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; 2               32      </span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; 3 cyl                   </span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt; 4      4        34% (11)</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt; 5      6        22% (7) </span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt; 6      8        44% (14)</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt; 7      missing  0% (0)</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="kw">library</span>(atableExtra)</span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt; Loading required package: glue</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; Registered S3 method overwritten by 'atableExtra':</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt;   method                              from  </span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#&gt;   format_statistics.statistics_factor atable</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"cyl"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#&gt;   Group         value   </span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co">#&gt; 1 Observations          </span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="co">#&gt; 2               32      </span></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="co">#&gt; 3 cyl                   </span></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="co">#&gt; 4      4        11 (34%)</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="co">#&gt; 5      6        7 (22%) </span></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="co">#&gt; 6      8        14 (44%)</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="co">#&gt; 7      missing  0 (0%)</span></span></code></pre></div>
+</div>
+<div id="numeric" class="section level2">
+<h2 class="hasAnchor">
+<a href="#numeric" class="anchor"></a>Numeric</h2>
+<p><code>atableExtra</code> also provides a flexible approach to formatting numeric variables via the <code>numeric_stats</code> function and it’s appropriate <code>format_statistics</code> method. It’s default settings mimic those from <code>atable</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># atable</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"mpg"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt;   Group                value </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; 1 Observations               </span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; 2                      32    </span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 3 mpg                        </span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 4      Mean (SD)       20 (6)</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 5      valid (missing) 32 (0)</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># atableExtra</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="kw">atable_options</span>(<span class="dt">statistics.numeric =</span> numeric_stats) <span class="co"># replace the default function</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"mpg"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt;   Group                value </span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; 1 Observations               </span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; 2                      32    </span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; 3 mpg                        </span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 4      Mean (SD)       20 (6)</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 5      Valid (missing) 32 (0)</span></span></code></pre></div>
+<p>It’s easy to change the format though via the <code>numstats</code> argument that takes either numbers 1 to 3 (defaults to 1)…</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"mpg"</span>, <span class="dt">numstats =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt;   Group                   value      </span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; 1 Observations                       </span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; 2                         32         </span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; 3 mpg                                </span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; 4      Mean (SD)          20 (6)     </span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; 5      Min - Max          10 - 34    </span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; 6      Median [Quartiles] 19 [15; 23]</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; 7      Valid (missing)    32 (0)</span></span></code></pre></div>
+<p>… or named characters…</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"mpg"</span>, </span>
+<span id="cb5-2"><a href="#cb5-2"></a>       <span class="dt">numstats =</span> <span class="kw">c</span>(<span class="st">"Mean"</span> =<span class="st"> "{mean}"</span>, <span class="st">"Median"</span> =<span class="st"> "{q0.5}"</span>))</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt;   Group                value </span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; 1 Observations               </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; 2                      32    </span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; 3 mpg                        </span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; 4      Mean            20    </span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; 5      Median          19    </span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 6      Valid (missing) 32 (0)</span></span></code></pre></div>
+<p>Any quantile can be used (0th (= minimum), 25th, median, 75th and 100th (=maximum) are available by default) via the <code>quantiles</code> argument and referred to as e.g. <code>q0.1</code> for the 10th percentile.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"mpg"</span>, </span>
+<span id="cb6-2"><a href="#cb6-2"></a>       <span class="dt">quantiles =</span> <span class="fl">.1</span>, </span>
+<span id="cb6-3"><a href="#cb6-3"></a>       <span class="dt">numstats =</span> <span class="kw">c</span>(<span class="st">"10th percentile"</span> =<span class="st"> "{q0.1}"</span>))</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt;   Group                value </span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; 1 Observations               </span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; 2                      32    </span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; 3 mpg                        </span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; 4      10th percentile 14    </span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; 5      Valid (missing) 32 (0)</span></span></code></pre></div>
+<p>The number of valid/missing observations can be turned off via the <code>missingformat</code> argument…</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"mpg"</span>, <span class="dt">missingformat =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt;   Group          value </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; 1 Observations         </span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; 2                32    </span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; 3 mpg                  </span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; 4      Mean (SD) 20 (6)</span></span></code></pre></div>
+<p>… or modified as per the <code>numstats</code> argument…</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">atable</span>(mtcars, <span class="dt">target_cols =</span> <span class="st">"mpg"</span>, <span class="dt">missingformat =</span> <span class="kw">c</span>(<span class="st">"Missing"</span> =<span class="st"> "{Nmissing}"</span>))</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt;   Group          value </span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt; 1 Observations         </span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; 2                32    </span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt; 3 mpg                  </span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; 4      Mean (SD) 20 (6)</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt; 5      Missing   0</span></span></code></pre></div>
 </div>
 </div>
   </div>
