@@ -98,4 +98,21 @@ atable(mtcars, target_cols = "mpg", missingformat = FALSE)
 atable(mtcars, target_cols = "mpg", missingformat = c("Missing" = "{Nmissing}"))
 ```
 
+## Different statistics for objects of the same type
+
+Sometimes it is preferable to have different summary statistics and tests for different variables of the same type. For example, normally distributed variables are often summarized by mean and standard deviation while non-normally distributed variables are typically summarized by quantiles.
+
+To implement such a thing with `atable` can be long winded. You need to create a new class, provide methods for that class etc. `atableExtra` provides a set of functions specifically for this. Convert your variable to the numeric_np class with the `as.numeric_np` function and you can specify two sets of formats.
+
+```{r}
+mtcars$disp <- as.numeric_np(mtcars$disp)
+class(mtcars$disp)
+# atable(mtcars, target_cols = c("mpg", "disp"))
+atable(mtcars, target_cols = c("mpg", "disp"), statistics.numeric_np = numeric_stats)
+```
+
+
+
+
+
 

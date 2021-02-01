@@ -2,6 +2,8 @@
 % Please edit documentation in R/numeric_stats.R
 \name{numeric_stats}
 \alias{numeric_stats}
+\alias{numeric_stats.numeric}
+\alias{numeric_stats.numeric_np}
 \title{Calculate summary statistics for numeric variables
 This function is designed to be compatible with `atable` as a substitute for
 it's default function (`atable:::statistics.numeric()`). It returns mean,
@@ -9,17 +11,23 @@ SD, any specified quantiles, number of observations, number of valid and missing
 values. Together with the appropriate formatting function, This allows a simple
 and flexible approach to defining the formats.}
 \usage{
-numeric_stats(x, quantiles = c(0, 0.25, 0.5, 0.75, 1), ...)
+numeric_stats(x, ...)
+
+\method{numeric_stats}{numeric}(x, quantiles = c(0, 0.25, 0.5, 0.75, 1), ...)
+
+\method{numeric_stats}{numeric_np}(x, ...)
 }
 \arguments{
 \item{x}{data}
 
-\item{quantiles}{list of quantiles to calculate}
-
 \item{...}{passed to/from other methods}
+
+\item{quantiles}{list of quantiles to calculate}
 }
 \value{
-list of class `numeric_stats` with one element for each quantile (e.g. `q0.5` for median),
+list of class `numeric_stats` with one element for each quantile
+(e.g. `q0.5` for median), iqr (interquartile range, only if quantiles includes
+0.25 and 0.75), range (only if quartiles includes 0 and 1),
 mean, sd, N (length), Nvalid (number of non-`NA`s) and Nmissing (number of `NA`s)
 }
 \description{
@@ -33,6 +41,13 @@ and flexible approach to defining the formats.
 \details{
 
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{numeric}: Method for numeric class
+
+\item \code{numeric_np}: Method for numeric_np class
+}}
+
 \examples{
 require(atable)
 data(mtcars)
@@ -41,6 +56,7 @@ atable(mpg ~ am, mtcars, statistics.numeric = numeric_stats)
 # or change atables default
 atable_options(statistics.numeric = numeric_stats)
 atable(mpg ~ am, mtcars)
+
 
 }
 \seealso{

@@ -68,8 +68,8 @@ format_statistics.statistics_factor <- function (x,
 #' The \code{numstats} argument allows the flexible formatting of the statistics
 #' and label. It accepts either a number (1 to 3) or a names character string.
 #' Number 1 is equivalent to \code{c("Mean (SD)" = "{mean} ({sd})")}. Number 2
-#' is equivalent to \code{c("Min - Max" = "{q0} - {q1}")} and number 3 is
-#' equivalent to \code{c("Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")}.
+#' is equivalent to \code{c("Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")}
+#' and number 3 is equivalent to \code{c("Min - Max" = "{q0} - {q1}")}.
 #' Any parameter returned by \code{numeric_stats} can be used.
 #'
 #' \code{missingformat} works in the same way as \code{numstats}. Tt defaults to
@@ -102,8 +102,8 @@ format_statistics.numeric_stats <- function(x,
   if(is.numeric(numstats)){
     if(any(numstats < 1 | numstats > 3)) stop("Unknown numstats value")
     defaults <- c("Mean (SD)" = "{mean} ({sd})",
-                  "Min - Max" = "{q0} - {q1}",
-                  "Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")
+                  "Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]",
+                  "Min - Max" = "{q0} - {q1}")
     numstats <- defaults[numstats]
     rm(defaults)
   }
@@ -152,7 +152,19 @@ format_statistics.numeric_stats <- function(x,
 
 
 
+#' @export
+#' @describeIn format_statistics.numeric_stats Method for numeric_stats_np class
+format_statistics.numeric_stats_np <- function(x,
+                                               np_numstats = 2,
+                                               np_missingformat = c("Valid (missing)" = "{Nvalid} ({Nmissing})"),
+                                               ...){
 
+  out <- format_statistics.numeric_stats(x,
+                                         numstats = np_numstats,
+                                         missingformat = np_missingformat, ...)
+
+  return(out)
+}
 
 
 

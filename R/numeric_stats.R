@@ -27,7 +27,14 @@
 #' atable_options(statistics.numeric = numeric_stats)
 #' atable(mpg ~ am, mtcars)
 #'
-numeric_stats <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
+#'
+numeric_stats <- function(x, ...){
+  UseMethod("numeric_stats")
+}
+
+#' @export
+#' @describeIn numeric_stats Method for numeric class
+numeric_stats.numeric <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
   if(!is.numeric(x)) stop("x should be numeric")
 
   # quantiles
@@ -50,3 +57,10 @@ numeric_stats <- function(x, quantiles = c(0, .25, .5, .75, 1), ...){
 
 }
 
+#' @export
+#' @describeIn numeric_stats Method for numeric_np class
+numeric_stats.numeric_np <- function(x, ...){
+  out <- numeric_stats(as.numeric(x), ...)
+  class(out) <- c("numeric_stats_np", class(out))
+  out
+}

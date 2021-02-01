@@ -32,7 +32,7 @@ test_that("expected output (default)", {
 })
 
 test_that("expected output (min - max)", {
-  fns <- format_statistics(ns, 2)
+  fns <- format_statistics(ns, 3)
   expect_equal(nrow(fns), 2)
   expect_equal(ncol(fns), 2)
   expect_equal(as.character(fns[1, 1]), "Min - Max")
@@ -41,7 +41,7 @@ test_that("expected output (min - max)", {
 })
 
 test_that("expected output (median)", {
-  fns <- format_statistics(ns, 3)
+  fns <- format_statistics(ns, 2)
   expect_equal(nrow(fns), 2)
   expect_equal(ncol(fns), 2)
   expect_equal(as.character(fns[1, 1]), "Median [Quartiles]")
@@ -58,8 +58,8 @@ test_that("expected outcome (all)", {
   expect_equal(nrow(fns), 4)
   expect_equal(ncol(fns), 2)
   expect_equal(as.character(fns[1, 1]), "Mean (SD)")
-  expect_equal(as.character(fns[2, 1]), "Min - Max")
-  expect_equal(as.character(fns[3, 1]), "Median [Quartiles]")
+  expect_equal(as.character(fns[2, 1]), "Median [Quartiles]")
+  expect_equal(as.character(fns[3, 1]), "Min - Max")
   expect_equal(as.character(fns[4, 1]), "Valid (missing)")
 
   fns <- format_statistics(ns, 1:3, FALSE)
@@ -86,20 +86,25 @@ test_that("expected outcome (custom)", {
 
 test_that("works with atable", {
 
-  expect_error(atable(mpg ~ am, mtcars,
-                      statistics_numeric = numeric_stats), NA)
+  expect_warning(atable(mpg ~ am, mtcars,
+                      statistics_numeric = numeric_stats),
+                 "cannot compute exact p-value")
 
-  expect_error(atable(mpg ~ am, mtcars,
+  expect_warning(atable(mpg ~ am, mtcars,
                       statistics_numeric = numeric_stats,
-                      numstats = 1:3), NA)
+                      numstats = 1:3),
+                 "cannot compute exact p-value")
 
-  expect_error(atable(mpg ~ am, mtcars,
+  expect_warning(atable(mpg ~ am, mtcars,
                       statistics_numeric = numeric_stats,
-                      numstats = 1:2, missingformat = FALSE), NA)
+                      numstats = 1:2, missingformat = FALSE),
+                 "cannot compute exact p-value")
 
-  expect_error(atable(mpg ~ am, mtcars,
+  expect_warning(atable(mpg ~ am, mtcars,
                       statistics_numeric = numeric_stats,
                       numstats = c("Mean" = "{mean}"),
-                      missingformat = FALSE), NA)
+                      missingformat = FALSE),
+                 "cannot compute exact p-value")
 
 })
+

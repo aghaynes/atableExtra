@@ -2,12 +2,20 @@
 % Please edit documentation in R/format_statistics.R
 \name{format_statistics.numeric_stats}
 \alias{format_statistics.numeric_stats}
+\alias{format_statistics.numeric_stats_np}
 \title{Format summary statistics for numeric variables when using \code{numstats}}
 \usage{
 \method{format_statistics}{numeric_stats}(
   x,
   numstats = c(`Mean (SD)` = "{mean} ({sd})"),
   missingformat = c(`Valid (missing)` = "{Nvalid} ({Nmissing})"),
+  ...
+)
+
+\method{format_statistics}{numeric_stats_np}(
+  x,
+  np_numstats = 2,
+  np_missingformat = c(`Valid (missing)` = "{Nvalid} ({Nmissing})"),
   ...
 )
 }
@@ -37,13 +45,18 @@ To format the numbers differently, reassign that function.
 The \code{numstats} argument allows the flexible formatting of the statistics
 and label. It accepts either a number (1 to 3) or a names character string.
 Number 1 is equivalent to \code{c("Mean (SD)" = "{mean} ({sd})")}. Number 2
-is equivalent to \code{c("Min - Max" = "{q0} - {q1}")} and number 3 is
-equivalent to \code{c("Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")}.
+is equivalent to \code{c("Median [Quartiles]" = "{q0.5} [{q0.25}; {q0.75}]")}
+and number 3 is equivalent to \code{c("Min - Max" = "{q0} - {q1}")}.
 Any parameter returned by \code{numeric_stats} can be used.
 
 \code{missingformat} works in the same way as \code{numstats}. Tt defaults to
 \code{c("Valid (missing)" = "{Nvalid} ({Nmissing})")}.
 }
+\section{Functions}{
+\itemize{
+\item \code{format_statistics.numeric_stats_np}: Method for numeric_stats_np class
+}}
+
 \examples{
 
 require(atable)
